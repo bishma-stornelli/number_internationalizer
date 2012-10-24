@@ -10,8 +10,9 @@ module NumberInternationalizer
       ActionView::Helpers::FormBuilder.class_eval do
 
         def number_field(field, options = {})
-          value = object.send("#{field}_before_normalize").to_s if object.respond_to?("#{field}_before_normalize".to_sym)
-          value ||= object.send(field).to_s
+          value = object.send("#{field}_before_normalize") if object.respond_to?("#{field}_before_normalize".to_sym)
+          value ||= object.send(field)
+          value = value.is_a?(String) ? value : display_as_number(value.to_s)
           options[:value] = value
           options[:class] = "#{options[:class]} number_field"
           text_field(field, options)
@@ -24,7 +25,7 @@ module NumberInternationalizer
         config.normalizers[:number] = lambda do |value, options|
           separator = I18n.t('number.format.separator')
           delimiter = I18n.t('number.format.delimiter')
-          value.gsub(delimiter, '').gsub(separator,".")
+          value.respond_to?(:gsub) ? value.gsub(delimiter, '').gsub(separator,".") : value
         end
 
       end
