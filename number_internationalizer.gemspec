@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = NumberInternationalizer::VERSION
   gem.authors       = ["Bishma Stornelli"]
   gem.email         = ["bishma.stornelli@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Internationalize numbers adding normalization, validation and modifying the number field to restor the value to its original if validation fails}
+  gem.summary       = gem.description
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
