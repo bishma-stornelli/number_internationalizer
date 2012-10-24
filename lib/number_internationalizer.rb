@@ -24,7 +24,7 @@ module NumberInternationalizer
         config.normalizers[:number] = lambda do |value, options|
           separator = I18n.t('number.format.separator')
           delimiter = I18n.t('number.format.delimiter')
-          value.gsub(delimiter, '').gsub(separator,".")
+          value.respond_to?(:gsub) ? value.gsub(delimiter, '').gsub(separator,".") : value
         end
 
       end

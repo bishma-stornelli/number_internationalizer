@@ -22,7 +22,7 @@ module ActiveModel
         separator = I18n.t('number.format.separator')
         delimiter = I18n.t('number.format.delimiter')
 
-        unless raw_value =~ /^(\d+|\d{1,3}(#{delimiter}\d{3})*)(#{separator}\d+)?$/
+        unless raw_value =~ /^-?(\d+|\d{1,3}(#{delimiter}\d{3})*)(#{separator}\d+)?$/
           record.errors.add(attr_name, :not_a_number)
         end
       end

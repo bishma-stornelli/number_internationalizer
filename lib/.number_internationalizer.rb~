@@ -1,6 +1,6 @@
 require "number_internationalizer/version"
 require "number_internationalizer/model_inclusions"
-require "active_model/validations/number_internationalizer_validator"
+require "active_model/validations/internationalized_numericality_validator"
 
 module NumberInternationalizer
   # Your code goes here...
