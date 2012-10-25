@@ -8,6 +8,7 @@ module ActiveModel
 
     class InternationalizedNumericalityValidator < ActiveModel::EachValidator
       def validate_each(record, attr_name, value)
+        
         before_normalize = "#{attr_name}_before_normalize"
         before_type_cast = "#{attr_name}_before_type_cast"
 
@@ -22,7 +23,7 @@ module ActiveModel
         separator = I18n.t('number.format.separator')
         delimiter = I18n.t('number.format.delimiter')
 
-        unless raw_value =~ /^-?(\d+|\d{1,3}(#{delimiter}\d{3})*)(#{separator}\d+)?$/
+        unless raw_value =~ /^-?(\d+|\d{1,3}(#{delimiter}\d{3})*)(#{separator}\d+)?#{options[:percentage] ? "%?" : ""}$/
           record.errors.add(attr_name, :not_a_number)
         end
       end
