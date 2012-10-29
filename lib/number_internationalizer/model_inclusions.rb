@@ -8,7 +8,6 @@ module NumberInternationalizer
     normalizer = options[:percentage] ? :percentage : :number
     
     attributes.each do |attribute|
-      raise ArgumentError, "'#{attribute}' is not a valid attribute for '#{self.class.name}'" unless send( :attribute_names ).include?(attribute.to_s)
       normalize_attribute attribute, with: normalizer
       validates attribute, internationalized_numericality: options
       
