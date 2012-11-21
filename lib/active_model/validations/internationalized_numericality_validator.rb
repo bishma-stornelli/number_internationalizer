@@ -13,7 +13,8 @@ module ActiveModel
         before_type_cast = "#{attr_name}_before_type_cast"
 
         raw_value = record.send(before_normalize) if record.respond_to?(before_normalize.to_sym)
-        raw_value ||= record.send(before_type_cast) if record.respond_to?(before_type_cast.to_sym)
+        # Next line doesn't work when the record is just retrieved from the database
+        #raw_value ||= record.send(before_type_cast) if record.respond_to?(before_type_cast.to_sym)
         raw_value ||= value
 
         return if options[:allow_nil] && raw_value.nil?
